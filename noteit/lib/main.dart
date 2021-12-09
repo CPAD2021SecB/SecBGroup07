@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:noteit/pages/login.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'NOTEIT',
       theme: ThemeData.dark().copyWith(
         primaryColor: Colors.white,
+        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
       ),
       home: LoginPage(),
     );
