@@ -72,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
-                      Colors.grey[700],
+                      Color.fromRGBO(66, 165, 245, 1.0),
                     ),
                     padding: MaterialStateProperty.all(
                       EdgeInsets.symmetric(

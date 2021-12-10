@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         primaryColor: Colors.white,
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
+        scaffoldBackgroundColor: Color(0xFFFFFF),
       ),
       home: LoginPage(),
     );
