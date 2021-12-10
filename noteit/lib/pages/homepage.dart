@@ -73,12 +73,30 @@ class _HomePageState extends State<HomePage> {
           if (snapshot.hasData) {
             if (snapshot.data!.docs.length == 0) {
               return Center(
-                child: Text(
-                  "You have no saved Notes !",
-                  style: TextStyle(
-                    color: Colors.white70,
+                child: Column(
+                  children: [
+                    Expanded(
+                child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    scale: 3.0,
+                    image: AssetImage(
+                      "assets/images/noData.png",
+                    ),
                   ),
                 ),
+              ),
+                    ),
+                Padding(padding: const EdgeInsets.symmetric(),
+              child: Text(
+                "It's Empty",
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontFamily: "lato",
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )  ])
               );
             }
 
