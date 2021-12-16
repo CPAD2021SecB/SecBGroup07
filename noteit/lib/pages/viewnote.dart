@@ -15,6 +15,7 @@ class ViewNote extends StatefulWidget {
 class _ViewNoteState extends State<ViewNote> {
   late String title;
   late String des;
+  late bool pinned;
 
   bool edit = false;
   GlobalKey<FormState> key = GlobalKey<FormState>();
@@ -23,6 +24,7 @@ class _ViewNoteState extends State<ViewNote> {
   Widget build(BuildContext context) {
     title = widget.data['title'];
     des = widget.data['description'];
+    pinned = widget.data['pinnedStatus'];
     return SafeArea(
       child: Scaffold(
         //
@@ -108,6 +110,31 @@ class _ViewNoteState extends State<ViewNote> {
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
                               Colors.red[300],
+                            ),
+                            padding: MaterialStateProperty.all(
+                              EdgeInsets.symmetric(
+                                horizontal: 15.0,
+                                vertical: 8.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 8.0,
+                        ),
+                        //
+                        ElevatedButton(
+                          onPressed: pin,
+                          child: pinned ? Icon(
+                            Icons.push_pin_sharp,
+                            size: 24.0,
+                          ) : Icon(
+                            Icons.push_pin_outlined,
+                            size: 24.0,
+                          ),
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                              Colors.blue[300],
                             ),
                             padding: MaterialStateProperty.all(
                               EdgeInsets.symmetric(
@@ -210,6 +237,14 @@ class _ViewNoteState extends State<ViewNote> {
     // delete from db
     await widget.ref.delete();
     Navigator.pop(context);
+  }
+
+  void pin() async {
+
+    await widget.ref.update(
+        {'pinnedStatus': !widget.data['pinnedStatus']},
+      );
+      Navigator.of(context).pop();
   }
 
   void save() async {
