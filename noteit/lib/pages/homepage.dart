@@ -17,7 +17,8 @@ class _HomePageState extends State<HomePage> {
       .collection('users')
       .doc(FirebaseAuth.instance.currentUser?.uid)
       .collection('notes');
-
+  
+  
   List<Color> myColors = [
     Colors.yellow.shade200,
     Colors.red.shade200,
@@ -68,7 +69,7 @@ class _HomePageState extends State<HomePage> {
       ),
       //
       body: FutureBuilder<QuerySnapshot>(
-        future: ref.get(),
+        future: ref.orderBy('pinnedStatus', descending: true).get(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data!.docs.length == 0) {
@@ -133,6 +134,14 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Container(
+                            alignment: Alignment.topRight,
+                            child: data['pinnedStatus'] ? Icon(
+                            Icons.push_pin_sharp,
+                            size: 24.0,
+                            color: Colors.black87,
+                          ) : null,
+                          ),
                           Text(
                             "${data['title']}",
                             style: TextStyle(
