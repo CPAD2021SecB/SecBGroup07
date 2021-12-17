@@ -133,6 +133,7 @@ class _AddNoteState extends State<AddNote> {
       'title': title,
       'description': des,
       'created': DateTime.now(),
+      'pinnedStatus': false
     };
 
     ref.add(data);
